@@ -1,0 +1,119 @@
+﻿<Window x:Class="CodeWanda.UI.Welcome.WelcomeWindow"
+        x:Name="Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:welcome="clr-namespace:CodeWanda.UI.Welcome"
+        xmlns:common="clr-namespace:CodeWanda.UI.Common"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        mc:Ignorable="d"
+        Title="CodeWanda"
+        Height="710" Width="1024"
+        ui:TitleBar.ExtendViewIntoTitleBar="True"
+        WindowStartupLocation="CenterScreen"
+        MouseLeftButtonDown="Border_MouseLeftButtonDown"
+        ResizeMode="NoResize"
+        Style="{StaticResource CodeWandaAcrylicWindowStyle}"
+        common:WindowBehavior.HideCloseButton="True">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Demo;component/Welcome/WelcomeStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Margin="30,50">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.Resources>
+            <CollectionViewSource x:Key="CollViewEntries" />
+        </Grid.Resources>
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource HeaderTextBlockStyle}"
+                   Text="{Binding ElementName=Window, Path=Title}" />
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource TitleTextBlockStyle}" Margin="0,10"
+                   Text="Open recent" />
+        <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource TitleTextBlockStyle}" Margin="0,10"
+                   Text="Get started" />
+
+        <ui:ListView
+            Grid.Row="2"
+            Grid.Column="0"
+            Margin="0,0,12,0"
+            x:Name="RecentListView"
+            ItemsSource="{Binding Source={StaticResource CollViewEntries}}"
+            HorizontalContentAlignment="Stretch"
+            IsSelectionEnabled="False"
+            VirtualizingPanel.IsVirtualizingWhenGrouping="True"
+            VirtualizingPanel.VirtualizationMode="Recycling">
+            <ui:ListView.ItemContainerStyle>
+                <Style TargetType="ui:ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ui:ListView.ItemContainerStyle>
+            <ui:ListView.ItemTemplate>
+                <DataTemplate>
+                    <Button BorderBrush="Transparent" Background="Transparent" Focusable="False"
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Grid Margin="3,6">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Ellipse
+                                        Grid.RowSpan="2"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        x:Name="Ellipse"
+                                        Width="32"
+                                        Height="32"
+                                        Margin="0,0,12,0"
+                                        Fill="Gray" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        VerticalAlignment="Center"
+                                        Text="Binding"
+                                        Style="{StaticResource BaseTextBlockStyle}" />
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </DataTemplate>
+            </ui:ListView.ItemTemplate>
+        </ui:ListView>
+
+        <ui:SimpleStackPanel
+            Grid.Row="2"
+            Grid.Column="1"
+            VerticalAlignment="Top"
+            Spacing="14"
+            Orientation="Vertical">
+            <welcome:WelcomeButton Title="Create a new project"
+                                   Description="Create empty CodeWanda project to incrementally add files for analysis"
+                                   x:Name="WelcomeCreateNewButton"
+                                   Content="{StaticResource IconAddToCollection}" Click="OnNewProject" />
+            <welcome:WelcomeButton Title="Open existing project"
+                                   Description="Open local CodeWanda project by choosing one using system file picker"
+                                   x:Name="WelcomeOpenExistingButton"
+                                   Content="{StaticResource IconOpenFileFromProject}" />
+        </ui:SimpleStackPanel>
+    </Grid>
+
+</Window>

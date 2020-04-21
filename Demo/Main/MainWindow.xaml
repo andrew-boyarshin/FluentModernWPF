@@ -1,0 +1,77 @@
+﻿<Window x:Class="CodeWanda.UI.Main.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:files="clr-namespace:CodeWanda.UI.Main.Pages.Files"
+        xmlns:controlFlow="clr-namespace:CodeWanda.UI.Main.Pages.ControlFlow"
+        xmlns:controls="http://schemas.modernwpf.com/2019"
+        mc:Ignorable="d"
+        x:Name="MainWindowName"
+        Height="450" Width="800"
+        controls:TitleBar.ExtendViewIntoTitleBar="True"
+        Title="{Binding WindowTitle}"
+        WindowStartupLocation="CenterScreen"
+        Loaded="MainWindowName_Loaded"
+        Style="{StaticResource CodeWandaAcrylicWindowStyle}"
+        DataContext="{StaticResource MainModel}">
+
+    <Window.Resources>
+        <controls:HamburgerMenuTitleBarPaddingConverter x:Key="TitleBarPaddingConverter" />
+
+        <files:FilesPage x:Key="FilesPage" />
+        <controlFlow:ControlFlowPage x:Key="ControlFlowPage" />
+    </Window.Resources>
+
+    <Grid>
+        <controls:HamburgerMenuEx
+            x:Name="NavView"
+            PaneBackground="Transparent"
+            IsPaneOpen="True"
+            PaneTitle="CodeWanda"
+            Padding="0"
+            ItemInvoked="NavView_ItemInvoked" 
+            ItemsSource="{Binding ContextTreeDetailsMenuItems}">
+
+            <controls:HamburgerMenuEx.HamburgerMenuHeaderTemplate>
+                <DataTemplate>
+                    <Border DataContext="{Binding ElementName=MainWindowName, Path=DataContext}"
+                            HorizontalAlignment="Center">
+                        <Button
+                            x:Name="PaneHyperlink"
+                            Content="{Binding ProjectName}"
+                            Background="Transparent"
+                            Click="PaneHyperlink_OnClick"
+                            Margin="12,0">
+                            <ToolTipService.ToolTip>
+                                <ToolTip
+                                    Content="{Binding ProjectHeaderTooltip}"
+                                    Placement="Right" />
+                            </ToolTipService.ToolTip>
+                            <controls:FlyoutService.Flyout>
+                                <controls:Flyout>
+                                    <StackPanel MinWidth="200" HorizontalAlignment="Stretch">
+                                        <TextBox
+                                            controls:ControlHelper.Header="Enter a new project name:"
+                                            controls:ControlHelper.PlaceholderText="Project name"
+                                            KeyDown="FlyoutInputOnKeyDown"
+                                            Text="{Binding ProjectNameEditValue, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                                            Margin="0,0,0,12" />
+                                        <Button Content="Rename the project" />
+                                    </StackPanel>
+                                </controls:Flyout>
+                            </controls:FlyoutService.Flyout>
+                        </Button>
+                    </Border>
+                </DataTemplate>
+            </controls:HamburgerMenuEx.HamburgerMenuHeaderTemplate>
+            
+            <controls:TransitionFrame
+                x:Name="ContentFrame"
+                Background="{StaticResource RegionBrush}"
+                Navigated="ContentFrame_Navigated" />
+            
+        </controls:HamburgerMenuEx>
+    </Grid>
+
+</Window>

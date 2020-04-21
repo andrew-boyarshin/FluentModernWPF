@@ -1,0 +1,27 @@
+﻿<Page x:Class="CodeWanda.UI.Main.Pages.Files.FilesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:main="clr-namespace:CodeWanda.UI.Main"
+      xmlns:controls="http://schemas.modernwpf.com/2019"
+      mc:Ignorable="d"
+      Style="{StaticResource PageStyle}"
+      DataContext="{StaticResource MainModel}"
+      d:DataContext="{d:DesignInstance main:MainModel}">
+
+    <ScrollViewer>
+        <controls:SimpleStackPanel Orientation="Vertical" Style="{StaticResource CodeWandaPageContentPanelStyle}">
+
+            <controls:CommandBar>
+                <controls:AppBarButton Icon="Add" Label="Add" Click="OnAddClicked" />
+                <controls:AppBarButton Icon="Remove" Label="Remove" Click="OnRemoveClicked" />
+            </controls:CommandBar>
+
+            <Border BorderBrush="{DynamicResource TextControlBorderBrush}"
+                    BorderThickness="1">
+                <TextBlock Text="Files Page" />
+            </Border>
+        </controls:SimpleStackPanel>
+    </ScrollViewer>
+</Page>

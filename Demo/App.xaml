@@ -1,0 +1,177 @@
+﻿<Application x:Class="CodeWanda.UI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.modernwpf.com/2019"
+             xmlns:main="clr-namespace:CodeWanda.UI.Main"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
+             StartupUri="Welcome/WelcomeWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/ModernWpf;component/ThemeResources/Dark.xaml" />
+
+                <!-- FluentWPF Controls -->
+                <ResourceDictionary Source="/FluentWPF;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="/FluentWPF;component/Styles/Colors.Dark.xaml" />
+                <ResourceDictionary Source="/FluentWPF;component/Styles/Brushes.xaml" />
+
+                <ResourceDictionary Source="/MahApps.Metro;component/Styles/Themes/Dark.Blue.xaml" />
+
+                <ui:MahAppsColorPaletteResources />
+
+                <!-- MahApps controls resources -->
+                <ResourceDictionary Source="/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="/MahApps.Metro;component/Themes/HamburgerMenu.xaml" />
+
+                <ui:XamlControlsResources />
+
+                <ResourceDictionary Source="/ModernWpf.MahApps;component/Styles/Controls.xaml" />
+
+                <ui:ColorPaletteResources
+                    TargetTheme="Dark"
+                    Accent="#FF0073CF" AltHigh="#FF000000" AltLow="#FF000000" AltMedium="#FF000000"
+                    AltMediumHigh="#FF000000" AltMediumLow="#FF000000" BaseHigh="#FFFFFFFF" BaseLow="#FF383838"
+                    BaseMedium="#FF9C9C9C" BaseMediumHigh="#FFB5B5B5" BaseMediumLow="#FF6A6A6A"
+                    ChromeAltLow="#FFB5B5B5" ChromeBlackHigh="#FF000000" ChromeBlackLow="#FFB5B5B5"
+                    ChromeBlackMedium="#FF000000" ChromeBlackMediumLow="#FF000000" ChromeDisabledHigh="#FF383838"
+                    ChromeDisabledLow="#FF9C9C9C" ChromeGray="#FF838383" ChromeHigh="#FF838383" ChromeLow="#FF171717"
+                    ChromeMedium="#FF1F1F1F" ChromeMediumLow="#FF303030" ChromeWhite="#FFFFFFFF" />
+
+                <ResourceDictionary>
+                    <Color x:Key="SystemChromeAltMediumHighColor">#CC2B2B2B</Color>
+                    <Color x:Key="SystemChromeAltHighColor">#FF383838</Color>
+                    <Color x:Key="SystemRevealListLowColor">#FF1F1F1F</Color>
+                    <Color x:Key="SystemRevealListMediumColor">#FF383838</Color>
+                    <Color x:Key="RegionColor">#FF2B2B2B</Color>
+                    <SolidColorBrush x:Key="RegionBrush" Color="{StaticResource RegionColor}" />
+                </ResourceDictionary>
+
+                <ResourceDictionary Source="/Demo;component/Common/Acrylic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <DrawingGroup x:Key="IconControlFlow">
+                <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                <GeometryDrawing Brush="#FFF6F6F6"
+                                 Geometry="F1M0.9999,-0.000199999999999534L0.9999,4.9998 1.9999,4.9998 1.9999,6.1288 1.3539,5.4828 -9.9999999999989E-05,6.8358 -9.9999999999989E-05,8.3708 1.6289,9.9998 0.9999,9.9998 0.9999,14.9998 5.9999,14.9998 5.9999,13.9998 7.1289,13.9998 6.4829,14.6468 7.8359,15.9998 9.3709,15.9998 10.9999,14.3708 10.9999,14.9998 15.9999,14.9998 15.9999,9.9998 10.9999,9.9998 10.9999,10.6288 9.3709,8.9998 7.9999,8.9998 7.8359,8.9998 6.4829,10.3538 7.1289,10.9998 5.9999,10.9998 5.9999,9.9998 5.3709,9.9998 6.9999,8.3708 6.9999,6.9998 6.9999,6.8358 5.6469,5.4828 5.0009,6.1288 5.0009,4.9998 5.9999,4.9998 5.9999,-0.000199999999999534z" />
+                <GeometryDrawing Brush="#FF424242"
+                                 Geometry="F1M1.9998,0.999700000000001L1.9998,4.0007 2.9998,4.0007 2.9998,8.5427 1.3538,6.8967 0.6458,7.6037 3.4998,10.4567 6.3528,7.6037 5.6468,6.8967 3.9998,8.5427 3.9998,4.0007 5.0008,4.0007 5.0008,0.999700000000001z M7.8968,10.3537L9.5428,12.0007 5.0008,12.0007 5.0008,10.9997 1.9998,10.9997 1.9998,14.0007 5.0008,14.0007 5.0008,13.0007 9.5428,13.0007 7.8968,14.6467 8.6028,15.3537 10.9568,13.0007 11.0108,13.0007 11.0108,12.9467 11.4568,12.4997 11.0108,12.0537 11.0108,12.0007 10.9568,12.0007 8.6028,9.6467z M11.9998,14.0007L15.0008,14.0007 15.0008,10.9997 11.9998,10.9997z" />
+            </DrawingGroup>
+
+            <mah:HamburgerMenuIconItem x:Key="MainMenuFiles"
+                                       Label="Files"
+                                       Tag="tab:files">
+                <mah:HamburgerMenuIconItem.Icon>
+                    <ui:FontIcon Glyph="&#xEC50;" />
+                </mah:HamburgerMenuIconItem.Icon>
+            </mah:HamburgerMenuIconItem>
+
+            <mah:HamburgerMenuIconItem x:Key="MainMenuControlFlow"
+                                       Label="Control Flow"
+                                       Tag="tab:controlflow">
+                <mah:HamburgerMenuIconItem.Icon>
+                    <Rectangle Width="32" Height="32">
+                        <Rectangle.Fill>
+                            <DrawingBrush Drawing="{StaticResource IconControlFlow}" Stretch="Uniform" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </mah:HamburgerMenuIconItem.Icon>
+            </mah:HamburgerMenuIconItem>
+
+            <main:MainModel x:Key="MainModel">
+                <main:MainModel.ContextTreeDetailsMenuItems>
+                    
+                    <ui:StaticResource ResourceKey="MainMenuFiles" />
+                    <ui:StaticResource ResourceKey="MainMenuControlFlow" />
+
+                    <mah:HamburgerMenuHeaderItem Label="Detailed" />
+
+                </main:MainModel.ContextTreeDetailsMenuItems>
+            </main:MainModel>
+
+            <Thickness x:Key="NavigationViewHeaderMargin">12,0,0,0</Thickness>
+
+            <Style x:Key="PageStyle" TargetType="Page">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Foreground" Value="{DynamicResource SystemControlPageTextBaseHighBrush}" />
+                <Setter Property="FontFamily" Value="{DynamicResource ContentControlThemeFontFamily}" />
+                <Setter Property="FontSize" Value="{DynamicResource ControlContentThemeFontSize}" />
+            </Style>
+
+            <DrawingGroup x:Key="IconAddToCollection">
+                <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                <GeometryDrawing Brush="#FFF6F6F6"
+                                 Geometry="F1M1.9998,-0.000199999999999534L1.9998,1.9998 -0.000199999999999978,1.9998 -0.000199999999999978,5.9998 1.9998,5.9998 1.9998,7.9998 2.9998,7.9998 2.9998,15.9998 10.9998,15.9998 10.9998,13.0008 15.9998,13.0008 15.9998,3.0008 11.9998,3.0008 11.9998,-0.000199999999999534z" />
+                <GeometryDrawing Brush="#FF424242"
+                                 Geometry="F1M6,7L6,8 9,8 9,14 5,14 5,8 4,8 4,15 10,15 10,7z M10,2L10,3 11,3 11,1 6,1 6,2z M15,4L15,12 11,12 11,11 14,11 14,5 10,5 10,6 9,6 9,4z" />
+                <GeometryDrawing Brush="#FFF0EFF1"
+                                 Geometry="F1M8,3L10,3 10,2 8,2z M9,8L5,8 5,14 9,14z M14,5L14,11 11,11 11,6 10,6 10,5z" />
+                <GeometryDrawing Brush="#FF388A34" Geometry="F1M3,7L3,5 1,5 1,3 3,3 3,1 5,1 5,3 7,3 7,5 5,5 5,7z" />
+            </DrawingGroup>
+
+            <DrawingGroup x:Key="IconOpenFileFromProject">
+                <GeometryDrawing Brush="#FFF6F6F6"
+                                 Geometry="F1M13.5469,0L7.9999,0C7.5829,0,7.1659,0.147,6.8159,0.402L6.4159,0 1.5959,0 2.9049,1.317C2.5619,1.531 2.2839,1.857 2.1309,2.28 0.879900000000001,2.814 -9.99999999997669E-05,4.056 -9.99999999997669E-05,5.5 -9.99999999997669E-05,6.891 0.821900000000001,8.085 1.9999,8.649L1.9999,11C1.9999,12.299,3.0309,13,3.9999,13L4.9999,13 4.9999,14C4.9999,15.299,6.0309,16,6.9999,16L12.9999,16C14.2989,16,14.9999,14.97,14.9999,14L14.9999,11.742C15.6509,11.378,15.9999,10.678,15.9999,10L15.9999,2.062z" />
+                <GeometryDrawing Brush="#FF414141"
+                                 Geometry="F1M4,9L3.5,9C3.329,9,3.165,8.973,3,8.949L3,11C3,12,3.965,12,3.965,12L5,12 5,11 4,11z" />
+                <GeometryDrawing Brush="#FF414141"
+                                 Geometry="F1M11.625,5L8.425,5 7.419,6 11,6 11,8 13,8 13,9 13,10 13,14 7,14 7,6.416 6.413,7 6,7 6,14C6,15,6.965,15,6.965,15L12.965,15C13.965,15,14,14,14,14L14,7.137z" />
+                <GeometryDrawing Brush="#FF414141"
+                                 Geometry="F1M12.625,1L12,1 9.547,1 9,1 8,1 7.965,1C7.965,1,7.747,1.003,7.519,1.11L8.403,2 10.736,2 12,2 12,4 12.547,4 14,4 14,5 14,5.241 14.925,6 15,6 15,3.136z" />
+                <GeometryDrawing Brush="#FF00539C"
+                                 Geometry="F1M4,8L4,7 3.5,7C2.673,7 2,6.327 2,5.5 2,4.673 2.673,4 3.5,4L6.013,4 4,6 6,6 8.5,3.516 6,1 4,1 5.988,3 3.5,3C2.119,3 1,4.119 1,5.5 1,6.881 2.119,8 3.5,8z" />
+                <GeometryDrawing Brush="#FFF0EFF1" Geometry="F1M12.5469,4L13.9999,5.221 13.9999,4z" />
+                <GeometryDrawing Brush="#FFF0EFF1" Geometry="F1M11,7.96L11,6 7,6 7,14 13,14 13,8 11,8z" />
+                <GeometryDrawing Brush="#FFF0EFF1" Geometry="F1M4,11L5.001,11 5.001,9 4,9z" />
+                <GeometryDrawing Brush="#FFF0EFF1" Geometry="F1M8.4033,2L9.9143,3.52 9.4303,4 12.0003,4 12.0003,2z" />
+            </DrawingGroup>
+
+            <DrawingGroup x:Key="IconCodeFile" ClipGeometry="M0,0 V14 H12 V0 H0 Z">
+                <GeometryDrawing Brush="#FFC5C5C5"
+                                 Geometry="F0 M12,14z M0,0z M8.57,0.14L11.85,3.44 12,3.8 12,13.5 11.5,14 0.5,14 0,13.5 0,0.5 0.5,0 8.22,0 8.57,0.14z M8,4L11,4 8,1 8,4z M1,1L1,13 11,13 11,5 7.5,5 7,4.5 7,1 1,1z M3.062,8.533L4.879,6.705 4.17,6 2,8.179 2,8.886 4.171,11.06 4.878,10.353 3.062,8.533z M6.8,6.714L7.5,6.005 9.689,8.18 9.689,8.889 7.5,11.062 6.795,10.353 8.626,8.533 6.8,6.714z" />
+            </DrawingGroup>
+
+            <DrawingGroup x:Key="IconFolderOpen" ClipGeometry="M0,0 V12 H16 V0 H0 Z">
+                <DrawingGroup.Transform>
+                    <TranslateTransform X="0.00018310500308871269" Y="0" />
+                </DrawingGroup.Transform>
+                <GeometryDrawing Brush="#FFC5C5C5"
+                                 Geometry="F1 M16,12z M0,0z M0.499817,12L12.4998,12 12.9798,11.63 15.6098,4.63 15.1298,4 12.9998,4 12.9998,1.5 12.4998,1 6.70978,1 5.84979,0.150024 5.49982,0 0.499817,0 -0.000183105,0.5 -0.000183105,11.5 0.499817,12z M0.999817,1L5.28986,1 6.14984,1.84998 6.49982,2 11.9998,2 11.9998,4 8.49982,4 8.14984,4.15002 7.28986,5 2.49982,5 2.02985,5.33997 1.02985,8.42004 0.999817,1z M12.1298,11L1.18976,11 2.8598,6 7.49982,6 7.84979,5.84998 8.70978,5 14.4998,5 12.1298,11z" />
+            </DrawingGroup>
+
+            <DrawingGroup x:Key="IconFolder" ClipGeometry="M0,0 V12 H15 V0 H0 Z">
+                <GeometryDrawing Brush="#FFC5C5C5"
+                                 Geometry="F1 M15,12z M0,0z M13.4998,1L6.70978,1 5.8598,0.150024 5.50983,0 0.509827,0 0.00982666,0.5 0.00982666,4.5 0.00982666,11.5 0.509827,12 13.5098,12 14.0098,11.5 14.0098,7 14.0098,1.5 13.4998,1z M12.9898,9.48999L12.9898,11 0.989807,11 0.989807,9.48999 0.989807,5.48999 0.989807,5 5.4798,5 5.82977,4.84998 6.68976,3.98999 12.9998,3.98999 12.9998,5.48999 12.9898,9.48999z M12.9898,3L6.48981,3 6.13983,3.15002 5.27985,4.01001 0.999817,4.01001 0.999817,1.01001 5.28986,1.01001 6.13983,1.85999 6.49982,2.01001 12.9998,2.01001 12.9898,3z" />
+            </DrawingGroup>
+
+            <DrawingGroup x:Key="IconPin" ClipGeometry="M0,0 V13 H15 V0 H0 Z">
+                <GeometryDrawing Brush="#FFC5C5C5"
+                                 Geometry="F1 M15,13z M0,0z M9.84003,0L8.92999,0.359985 8.92999,2.5 5.51001,4.96997C4.99341,4.7243 4.41857,4.62731 3.84998,4.68994 3.28647,4.75344 2.75253,4.97536 2.31,5.32996L2.31,6.06006 5.15002,8.81995 0.960022,13 2.47998,13 5.91998,9.56006 8.40997,11.99 9.16998,11.99C9.52966,11.5667 9.75587,11.0464 9.81995,10.4946 9.88402,9.94287 9.78314,9.38446 9.53003,8.89001L12.08,5.56995 14.28,5.56995 14.65,4.68994 9.84003,0z M11.84,4.53003L11.41,4.73999 8.53998,8.48999 8.47998,9C8.76791,9.55007,8.84954,10.185,8.71002,10.79L6.71002,8.79004 5.95001,8.05005 3.59998,5.76001C4.2218,5.62943,4.86946,5.71036,5.44,5.98999L5.97003,5.93005 9.83002,3.14001 10.04,2.72998 10.04,1.57996 13.04,4.5 11.84,4.53003z" />
+            </DrawingGroup>
+
+            <DrawingGroup x:Key="IconClose" ClipGeometry="M0,0 V10 H10 V0 H0 Z">
+                <GeometryDrawing Brush="#FFC5C5C5"
+                                 Geometry="F0 M10,10z M0,0z M5,5.70708L8.64645,9.35353 9.35355,8.64642 5.70711,4.99998 9.35355,1.35353 8.64645,0.646423 5,4.29287 1.35355,0.646423 0.646446,1.35353 4.29289,4.99998 0.646446,8.64642 1.35355,9.35353 5,5.70708z" />
+            </DrawingGroup>
+
+            <DataTemplate DataType="{x:Type Drawing}">
+                <Rectangle>
+                    <Rectangle.Fill>
+                        <DrawingBrush Drawing="{Binding}" Stretch="Uniform" />
+                    </Rectangle.Fill>
+                </Rectangle>
+            </DataTemplate>
+
+            <Thickness x:Key="CodeWandaPageContentMargin">24,0,24,20</Thickness>
+
+            <Style x:Key="CodeWandaPageContentPanelStyle" TargetType="ui:SimpleStackPanel">
+                <Setter Property="Margin" Value="{StaticResource CodeWandaPageContentMargin}" />
+                <Setter Property="Spacing" Value="16" />
+            </Style>
+
+            <system:Double x:Key="GraphSmoothingLength">32</system:Double>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
